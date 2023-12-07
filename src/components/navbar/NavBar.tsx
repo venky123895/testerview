@@ -9,7 +9,6 @@ import {
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { GrTestDesktop } from "react-icons/gr";
 
-
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
@@ -25,7 +24,7 @@ export default function Nav() {
             Tester{" "}
             <Flex as="span" alignItems="center" gap="10px" color="red">
               {" "}
-              View <GrTestDesktop/>
+              View <GrTestDesktop />
             </Flex>
           </Flex>
 

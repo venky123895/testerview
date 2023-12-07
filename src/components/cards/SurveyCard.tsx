@@ -27,7 +27,12 @@ const SurveyCard: React.FC<survey> = ({
         {selector?.title}
       </Heading>
       <Text pt="5px">{selector?.description}</Text>
-      <DrawerComponent id={selector.id} selector={selector} isLoading={isLoading} setIsLoading={setIsLoading}/>
+      <DrawerComponent
+        id={selector.id}
+        selector={selector}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+      />
     </Card>
   );
 };

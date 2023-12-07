@@ -12,8 +12,7 @@ const DataBaseCard: React.FC<DatabaseCard> = ({
   isLoading,
   setIsLoading,
 }) => {
-
-console.log(selector?.images[0])
+  console.log(selector?.images[0]);
   return (
     <>
       <Card p="10px">
@@ -38,7 +37,12 @@ console.log(selector?.images[0])
           {selector?.title}
         </Heading>
         <Text pt="5px">{selector?.description}</Text>
-        <DrawerComponent id={selector.id} selector={selector} isLoading={isLoading} setIsLoading={setIsLoading} />
+        <DrawerComponent
+          id={selector.id}
+          selector={selector}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+        />
       </Card>
     </>
   );
