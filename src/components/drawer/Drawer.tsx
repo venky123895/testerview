@@ -23,6 +23,7 @@ import { MdDone } from "react-icons/md";
 import React, { useRef, useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { textDb } from "../../firebase";
+import SurveyForm from "../surveyform/SurveyForm";
 
 interface dataBase {
   id: string;
@@ -184,9 +185,9 @@ const DrawerComponent: React.FC<dataBase> = ({
                 Note* :{" "}
                 {selector.type.includes("images")
                   ? "Select any 2 images to test"
-                  : selector.type.includes("images")
-                  ? "Enter Start and end time"
-                  : ""}
+                  : selector.type.includes("video")
+                  ? "Enter start and end time"
+                  : "Answer all the questions"}
               </Text>
             </Box>
             <SimpleGrid columns={3} spacing={4} mt="25px">
@@ -199,7 +200,7 @@ const DrawerComponent: React.FC<dataBase> = ({
                   onClick={() => handleImageClick(img)}
                   style={{ cursor: "pointer" }}
                 >
-                  {selector.type.includes("image") ? (
+                  {selector.type.includes("image") && (
                     <>
                       <Image
                         src={img}
@@ -224,21 +225,26 @@ const DrawerComponent: React.FC<dataBase> = ({
                         </Box>
                       )}
                     </>
-                  ) : (
-                    <video
-                      controls
-                      ref={videoRef}
-                      style={{
-                        borderRadius: "10px",
-                        marginTop: "10px",
-                      }}
-                    >
-                      <source src={img} />
-                    </video>
-                  )}
+                  ) }
                 </Box>
               ))}
             </SimpleGrid>
+            {selector.type.includes("video") && (
+              <VStack mt="20px">
+                <Box position="relative" overflow="hidden" borderRadius="10px">
+                  <video
+                    controls
+                    ref={videoRef}
+                    style={{
+                      borderRadius: "10px",
+                      width: "100%",
+                    }}
+                  >
+                    <source src={selector?.images[0]} />
+                  </video>
+                </Box>
+              </VStack>
+            )}
             {selector.type.includes("video") && (
               <VStack mt="20px">
                 <FormControl w={["60%", "40%", "30%"]}>
@@ -261,19 +267,26 @@ const DrawerComponent: React.FC<dataBase> = ({
                 </FormControl>
               </VStack>
             )}
-            <Flex justify="center">
-              <Button
-                mt="10px"
-                w="50%"
-                onClick={
-                  selector.type.includes("images")
-                    ? handleSubmitImages
-                    : handleSubmitVideo
-                }
-              >
-                Submit Test
-              </Button>
-            </Flex>
+            {selector.type.includes("surveys") && (
+              <>
+                <SurveyForm selector={selector} setIsLoading={setIsLoading} />
+              </>
+            )}
+            {!selector.type.includes("surveys") && (
+              <Flex justify="center">
+                <Button
+                  mt="10px"
+                  w="50%"
+                  onClick={
+                    selector.type.includes("images")
+                      ? handleSubmitImages
+                      : handleSubmitVideo
+                  }
+                >
+                  Submit Test
+                </Button>
+              </Flex>
+            )}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
