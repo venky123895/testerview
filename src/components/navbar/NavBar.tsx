@@ -1,16 +1,16 @@
 import {
   Box,
   Flex,
-  Button,
   useColorModeValue,
   Stack,
-  useColorMode,
 } from "@chakra-ui/react";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { GrTestDesktop } from "react-icons/gr";
+import React,{useEffect} from "react";
 
 export default function Nav() {
-  const { colorMode, toggleColorMode } = useColorMode();
+  useEffect(()=>{
+    localStorage.setItem('chakra-ui-color-mode','dark')
+  },[])
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -30,9 +30,7 @@ export default function Nav() {
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              <Button onClick={toggleColorMode}>
-                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-              </Button>
+
             </Stack>
           </Flex>
         </Flex>
