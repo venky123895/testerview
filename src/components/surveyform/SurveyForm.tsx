@@ -8,6 +8,7 @@ import {
   Flex,
   Button,
   useToast,
+  Box
 } from "@chakra-ui/react";
 import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
@@ -19,6 +20,7 @@ interface SurveyFormType {
 }
 
 const SurveyForm: React.FC<SurveyFormType> = ({ selector, setIsLoading }) => {
+  
   const toast = useToast();
   const [answers, setAnswers] = useState<Array<string | undefined>>(
     Array(selector?.questions.length)
@@ -76,17 +78,18 @@ const SurveyForm: React.FC<SurveyFormType> = ({ selector, setIsLoading }) => {
       duration: 3000,
       isClosable: true,
     });
+    
   };
 
   return (
-    <>
+    <Box>
       <FormControl>
         {selector?.questions?.map((que: any, index: number) => {
           if (que.type === "descriptive") {
             return (
               <div key={index}>
                 <FormLabel mt="5px">
-                  {index + 1} {"."} {que.text}
+                  {index + 1} {"."} {que.text?.charAt(0).toUpperCase()+que.text?.slice(1)} {"?"}
                 </FormLabel>
                 <Input
                   type="text"
@@ -101,7 +104,7 @@ const SurveyForm: React.FC<SurveyFormType> = ({ selector, setIsLoading }) => {
             return (
               <div key={index}>
                 <FormLabel mt="5px">
-                  {index + 1} {"."} {que.text}
+                  {index + 1} {"."} {que.text?.charAt(0).toUpperCase()+que.text?.slice(1)} {"?"}
                 </FormLabel>
                 <RadioGroup
                   onChange={(value) => handleRadioAnswerChange(index, value)}
@@ -114,7 +117,7 @@ const SurveyForm: React.FC<SurveyFormType> = ({ selector, setIsLoading }) => {
                           key={optionIndex}
                           value={opt}
                         >
-                          {opt}
+                          {opt?.charAt(0).toUpperCase()+opt?.slice(1)}
                         </Radio>
                       );
                     })}
@@ -130,7 +133,7 @@ const SurveyForm: React.FC<SurveyFormType> = ({ selector, setIsLoading }) => {
           Submit Test
         </Button>
       </Flex>
-    </>
+    </Box>
   );
 };
 
