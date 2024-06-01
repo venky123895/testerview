@@ -2,9 +2,10 @@ import { Box, Select, SimpleGrid } from "@chakra-ui/react";
 import { collection, getDocs } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import { textDb } from "../../firebase";
-import Spinners from "../spinners/Spinners";
 import SurveyCard from "../cards/SurveyCard";
 import DataBaseCard from "../cards/DataBaseCard";
+import SkeletonComp from "../../common/skeleton/SkeletonComp";
+
 
 interface home {
   isLoading: boolean;
@@ -58,7 +59,21 @@ const Home: React.FC<home> = ({ isLoading, setIsLoading }) => {
         <option value="videos">Videos</option>
         <option value="surveys">Survey</option>
       </Select>
-      {isLoading && <Spinners />}
+      {isLoading && (
+        <SimpleGrid
+        spacing={4}
+        mt="15px"
+        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+        maxH="400px"
+        overflowY="auto"
+      >
+        {Array(20).fill(0).map((_,index:number)=>{
+          return(
+            <SkeletonComp key={index}/>
+          )
+        })}
+        </SimpleGrid>
+      )}
       {dropdown === "surveys" ? (
         <>
           {surveySelector.length > 0 ? (
