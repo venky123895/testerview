@@ -10,16 +10,14 @@ import CalenderPlusIcon from "../src/components/assets/calenderplus.svg";
 import ChevronLeft from "../src/components/assets/chevron-left.svg";
 import ChevronRight from "../src/components/assets/chevron-right.svg";
 
-interface DateTimeBlockProps {
-
-}
+interface DateTimeBlockProps {}
 
 const App: FC<DateTimeBlockProps> = () => {
   const [startDate, setStartDate] = useState<Date | null>(null); // The selected date (updated on Apply)
-  const [tempDate, setTempDate] = useState<Date | null>(null); // The temporary date selected by user
+  const [tempDate, setTempDate] = useState<Date | null>(new Date()); // The temporary date selected by user
   const [isPopperOpen, setIsPopperOpen] = useState(false); // To toggle the date picker visibility
 
-  const isDateTimePreference = false
+  const isDateTimePreference = false;
 
   // Custom header for the date picker
   const renderCustomHeader = ({
@@ -83,6 +81,7 @@ const App: FC<DateTimeBlockProps> = () => {
 
   const handleClear = () => {
     setIsPopperOpen(false);
+    setTempDate(null); // Clear temp date on cancel
   };
 
   const handleButtonAction = (
@@ -102,14 +101,14 @@ const App: FC<DateTimeBlockProps> = () => {
         <Button
           onClick={(e) => handleButtonAction(e, handleClear)}
           variant="unstyled"
-          className={styles["foolter-btn__clear"]}
+          className={styles["footer-btn__clear"]}
         >
           Cancel
         </Button>
         <Button
           onClick={(e) => handleButtonAction(e, handleApply)}
           variant="unstyled"
-          className={styles["foolter-btn__apply"]}
+          className={styles["footer-btn__apply"]}
           isDisabled={!tempDate} // Disable Apply button if no date is selected
         >
           Apply
@@ -119,15 +118,9 @@ const App: FC<DateTimeBlockProps> = () => {
   );
 
   return (
-    <Box
-      className={styles["custom-datepicker-wrapper"]}
-      onClick={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        setIsPopperOpen(true);
-      }}
-    >
+    <Box className={styles["custom-datepicker-wrapper"]}>
       <ReactDatePicker
+        onInputClick={() => setIsPopperOpen(true)}
         className={styles["custom-datepicker"]}
         placeholderText={
           isDateTimePreference ? "DD/MM/YYYY HH:MM" : "DD/MM/YYYY"
@@ -135,13 +128,8 @@ const App: FC<DateTimeBlockProps> = () => {
         dateFormat={isDateTimePreference ? "dd/MM/yyyy HH:mm" : "dd/MM/yyyy"}
         showPopperArrow={false}
         calendarStartDay={1} // Start from Monday
-        selected={startDate} // Show the actual selected date
-        onChange={(date: Date | null) => {
-          if (startDate) {
-            setTempDate(startDate);
-          }
-          setTempDate(date);
-        }} // Update temp date
+        selected={tempDate} // Only show tempDate during selection, not in the input
+        onChange={(date: Date | null) => setTempDate(date)} // Update temp date on selection
         isClearable={false}
         renderCustomHeader={renderCustomHeader}
         calendarContainer={calendarContainer}
@@ -152,6 +140,7 @@ const App: FC<DateTimeBlockProps> = () => {
           setTempDate(startDate); // Reset tempDate to the applied startDate if the popper is closed without applying
           setIsPopperOpen(false);
         }} // Close popper if clicking outside
+        value={startDate ? startDate.toLocaleDateString() : ""} // Display the startDate in the input field only after Apply
       />
       <Box className={styles["icon-wrapper"]}>
         <Image

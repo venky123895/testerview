@@ -52,26 +52,26 @@
   width: 328px;
 }
 
-.custom-popper :global(.react-datepicker__header) {
+.react-datepicker__header {
   border-bottom: none;
 }
 
-.custom-popper :global(.react-datepicker__day--selected),
-.custom-popper :global(.react-datepicker__day--keyboard-selected) {
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
   border-radius: 50%;
-  background-color: var(--chakra-colors-brand-500) !important;
+  background-color: blue !important;
   color: #ffffff !important;
   font-weight: var(--chakra-fontWeights-medium);
   font-size: 14px;
 }
 
-.custom-popper :global(.react-datepicker__day--selected:hover),
-.custom-popper :global(.react-datepicker__day:hover),
-.custom-popper :global(.react-datepicker__day--keyboard-selected:hover) {
+.react-datepicker__day--selected:hover,
+.react-datepicker__day:hover,
+.react-datepicker__day--keyboard-selected:hover {
   border-radius: 50%;
 }
 
-.custom-popper :global(.react-datepicker__day-name) {
+.react-datepicker__day-name {
   color: var(--chakra-colors-gray-700);
   font-size: 14px;
   line-height: 20px;
@@ -82,7 +82,7 @@
   width: 100% !important;
 }
 
-.custom-popper :global(.react-datepicker__day) {
+.react-datepicker__day {
   color: var(--chakra-colors-gray-700);
   font-size: 14px;
   font-weight: var(--chakra-fontWeights-normal);
@@ -121,7 +121,7 @@
   gap: 12px;
 }
 
-.foolter-btn__clear {
+.footer-btn__clear {
   width: 142px;
   height: 40px;
   border-radius: 8px;
@@ -135,7 +135,7 @@
   line-height: 20px;
 }
 
-.foolter-btn__apply {
+.footer-btn__apply {
   width: 142px;
   height: 40px;
   border-radius: 8px;
