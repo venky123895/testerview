@@ -24,7 +24,6 @@ const Home: React.FC<home> = ({ isLoading, setIsLoading }) => {
       const dataDB = await getDocs(valRef);
       const allData = dataDB.docs.map((val) => ({ ...val.data(), id: val.id }));
       setDatabaseData(allData);
-      console.log("database", databaseData);
       setIsLoading(false);
     } catch (error) {
       console.log(error);

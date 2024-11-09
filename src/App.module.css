@@ -1,0 +1,177 @@
+.custom-datepicker-wrapper {
+  position: relative;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.custom-datepicker {
+  height: 38px;
+  padding: 4px 12px 4px 40px;
+  border-radius: var(--chakra-radii-md);
+  background-color: var(--chakra-colors-gray-50);
+  border: 1.29px solid var(--chakra-colors-gray-100);
+  color: var(--chakra-colors-gray-600);
+  font-size: 13px;
+  font-weight: var(--chakra-fontWeights-medium);
+  line-height: 18px;
+  outline: none;
+}
+
+.custom-datepicker::placeholder {
+  color: var(--chakra-colors-gray-400);
+}
+
+.icon-wrapper {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  border-radius: 4px;
+  background-color: var(--chakra-colors-gray-100);
+}
+
+.custom-icon {
+  font-size: 18px;
+  color: var(--chakra-colors-gray-600);
+  pointer-events: none;
+}
+
+.custom-popper {
+  background-color: #ffffff !important;
+  border: 1px solid var(--chakra-colors-gray-200) !important;
+  box-shadow: 0px 0px 0px 4px #6938ef1f !important;
+  border-radius: var(--chakra-radii-lg) !important;
+  width: 328px;
+}
+
+.custom-popper :global(.react-datepicker__header) {
+  border-bottom: none;
+}
+
+.custom-popper :global(.react-datepicker__day--selected),
+.custom-popper :global(.react-datepicker__day--keyboard-selected) {
+  border-radius: 50%;
+  background-color: var(--chakra-colors-brand-500) !important;
+  color: #ffffff !important;
+  font-weight: var(--chakra-fontWeights-medium);
+  font-size: 14px;
+}
+
+.custom-popper :global(.react-datepicker__day--selected:hover),
+.custom-popper :global(.react-datepicker__day:hover),
+.custom-popper :global(.react-datepicker__day--keyboard-selected:hover) {
+  border-radius: 50%;
+}
+
+.custom-popper :global(.react-datepicker__day-name) {
+  color: var(--chakra-colors-gray-700);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--chakra-fontWeights-medium);
+}
+
+.custom-popper :global(.react-datepicker__month-container) {
+  width: 100% !important;
+}
+
+.custom-popper :global(.react-datepicker__day) {
+  color: var(--chakra-colors-gray-700);
+  font-size: 14px;
+  font-weight: var(--chakra-fontWeights-normal);
+}
+
+.custom-header__month {
+  font-weight: var(--chakra-fontWeights-semibold);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--chakra-colors-gray-700);
+  font-family: "Inter";
+}
+
+.custom-header__navigation-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-header__navigation-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.datepicker-buttons {
+  width: 100%;
+  height: 72px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  clear: both;
+  border-top: 1px solid var(--chakra-colors-gray-200);
+  gap: 12px;
+}
+
+.foolter-btn__clear {
+  width: 142px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 10px 14px;
+  background-color: #ffffff;
+  border: 1px solid #d0d5dd;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  color: #344054;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.foolter-btn__apply {
+  width: 142px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 10px 14px;
+  background-color: #6938ef;
+  border: 1px solid #6938ef;
+  box-shadow: 0px 1px 2px 0px #1018280d;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+
+  &:disabled {
+    background-color: #f2f4f7 !important;
+    border: 1px solid #eaecf0 !important;
+    box-shadow: 0px 1px 2px 0px #1018280d !important;
+    color: #98a2b3 !important;
+  }
+}
+
+.time-picker-input {
+  width: 60px;
+  height: 24px;
+  border-radius: 2px;
+  background-color: #f9fafb;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: #475467;
+  outline: none;
+  border: none;
+}
+
+.time-picker-label {
+  color: #475467;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
